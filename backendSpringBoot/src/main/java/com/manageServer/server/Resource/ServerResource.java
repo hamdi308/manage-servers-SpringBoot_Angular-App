@@ -39,7 +39,7 @@ public class ServerResource {
         );
     }
     @GetMapping(path = "/ping/{ipAdresse}")
-    public ResponseEntity<Response> pingserver(@PathVariable String ipAdresse) throws IOException {
+    public ResponseEntity<Response> pingserver(@PathVariable("ipAdresse") String ipAdresse) throws IOException {
         Server server=serverService.ping(ipAdresse);
         return ResponseEntity.ok(
                 Response.builder()
@@ -89,6 +89,6 @@ public class ServerResource {
     }
     @GetMapping(path = "/image/{imageName}",produces = IMAGE_PNG_VALUE)
     public byte[] getServerImage(@PathVariable("imageName") String imageName) throws IOException {
-        return Files.readAllBytes(Paths.get("./src/main/resources/static/servers_imgs"+imageName));
+        return Files.readAllBytes(Paths.get("./src/main/resources/static/servers_imgs/"+imageName));
     }
 }

@@ -45,7 +45,7 @@ public class ServerService implements com.manageServer.server.Service.ServerServ
     public Server ping(String ipAdresse) throws IOException {
         log.info("pinging server IP: {}",ipAdresse);
         Server server=serverRepository.findByIpAdresse(ipAdresse);
-        InetAddress adresse = InetAddress.getByAddress(ipAdresse.getBytes(StandardCharsets.UTF_8));
+        InetAddress adresse = InetAddress.getByName(ipAdresse);
         server.setStatus(adresse.isReachable(10000)? SERVER_UP:SERVER_DOWN);
         serverRepository.save(server);
         return server;
