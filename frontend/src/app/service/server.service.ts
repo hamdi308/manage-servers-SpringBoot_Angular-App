@@ -10,7 +10,7 @@ export class ServerService {
   save$ = (server: Server) => { <Observable<CustomResponse>> this.http.post<CustomResponse>(`${this.apiUrl}/server/save`,server).pipe(tap(console.log), catchError(this.handleError)) };
   ping$ = (ipAdresse: string) => { <Observable<CustomResponse>>this.http.get<CustomResponse>(`${this.apiUrl}/server/ping/${ipAdresse}`).pipe(tap(console.log), catchError(this.handleError)) };
   server$ = (id: string) => { <Observable<CustomResponse>>this.http.get<CustomResponse>(`${this.apiUrl}/server/get/${id}`).pipe(tap(console.log), catchError(this.handleError)) };
-
+  deleteServer$ = (id: string) => { <Observable<CustomResponse>>this.http.delete<CustomResponse>(`${this.apiUrl}/delete/${id}`).pipe(tap(console.log), catchError(this.handleError)) };
   handleError(handleError: any): Observable<never> {
     return throwError(() => 'Method not implemented.') ;
   }
